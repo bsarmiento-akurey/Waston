@@ -13,7 +13,7 @@
         <!--WASTON 1.0-->
         <scene sceneID="s6Z-bg-poK">
             <objects>
-                <viewController id="A75-qW-p6v" sceneMemberID="viewController">
+                <viewController id="A75-qW-p6v" customClass="WastonMainViewController" customModule="Waston" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="RHx-sK-BmR">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -52,7 +52,7 @@
                                 <rect key="frame" x="124" y="166.5" width="231" height="30"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EiN-ih-SjB">
                                 <rect key="frame" x="16" y="597" width="343" height="50"/>
@@ -61,6 +61,9 @@
                                 <state key="normal" title="Crear equipos">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
+                                <connections>
+                                    <action selector="createTeamsAction:" destination="A75-qW-p6v" eventType="touchUpInside" id="lRT-9Y-GOf"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VsF-V3-Yzz">
                                 <rect key="frame" x="20" y="226.5" width="335" height="50"/>
@@ -72,10 +75,39 @@
                                 <state key="normal" title="Añadir jugador">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
+                                <connections>
+                                    <action selector="addPlayerAction:" destination="A75-qW-p6v" eventType="touchUpInside" id="Ftz-xe-Wzj"/>
+                                </connections>
                             </button>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="RHz-52-KX7">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="RHz-52-KX7">
                                 <rect key="frame" x="0.0" y="338.5" width="375" height="238.5"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="PlayerCell" textLabel="cTz-5b-ydX" detailTextLabel="WB8-tX-gbA" style="IBUITableViewCellStyleValue1" id="ahs-Nr-W7L">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ahs-Nr-W7L" id="qLB-bT-aKV">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="cTz-5b-ydX">
+                                                    <rect key="frame" x="15" y="12" width="33.5" height="20.5"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Detail" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="WB8-tX-gbA">
+                                                    <rect key="frame" x="316" y="12" width="44" height="20.5"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" red="0.97258081896551729" green="0.96396228284255736" blue="0.94088023957009481" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
@@ -111,6 +143,11 @@
                         <viewLayoutGuide key="safeArea" id="g8B-3w-bIF"/>
                     </view>
                     <navigationItem key="navigationItem" title="WASTON 1.0" id="DgM-Gb-59z"/>
+                    <connections>
+                        <outlet property="nameTextField" destination="I6U-Nn-rZq" id="xwm-7p-dLY"/>
+                        <outlet property="overallTextField" destination="o6T-7R-N0N" id="kHG-1T-RFz"/>
+                        <outlet property="playersTableView" destination="RHz-52-KX7" id="7wl-6O-KTz"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SPi-N6-qpX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
